@@ -1,9 +1,9 @@
 import React from 'react'
 import Chatkit from '@pusher/chatkit'
 import MessageList from './MessageList/MessageList'
-// import SendMessage from './SendMessage/SendMessage'
-// import Rooms from './Rooms/Rooms'
-// import AddRoom from './AddRoom/AddRoom'
+import SendMessage from './SendMessage/SendMessage'
+import Rooms from './Rooms/Rooms'
+import AddRoom from './AddRoom/AddRoom'
 
 import {instanceLocator, tokenUrl} from './config'
 
@@ -11,7 +11,7 @@ export default class App extends React.Component{
   constructor(){
     super()
     this.state = {
-      data: ''
+      messages: []
      }
   }
   
@@ -30,7 +30,7 @@ export default class App extends React.Component{
          roomId: 10857405,
          hooks: {
             onNewMessage: message => {
-              console.log('message.text ', message.text)
+             this.setState({messages: [...this.state.messages, message]})
             }
          }
        })
@@ -40,10 +40,7 @@ export default class App extends React.Component{
   render(){
     return (
       <React.Fragment>
-        {/* <Rooms/>
-        <AddRoom/> */}
-        <MessageList/>
-        {/* <SendMessage/> */}
+        <MessageList messages={this.state.messages}/>
       </React.Fragment>
     )
 
