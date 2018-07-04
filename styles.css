@@ -1,0 +1,18 @@
+:root{
+  --gray:#5d6b82;
+  --coral: #f9746b;
+  --darkgray: #435066;
+  --lime:#ccf96b;
+}
+
+body{
+  padding:0;
+  margin:0;
+  height: 100vh;
+  background-color: #435066;
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(30%, 1fr));
+  grid-template-rows: repeat(4, minmax(25%, 1fr));
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
