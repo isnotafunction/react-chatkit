@@ -11,8 +11,16 @@ body{
   height: 100vh;
   background-color: #435066;
   color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root{
+  height: 100%;
+  width:100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(30%, 1fr));
   grid-template-rows: repeat(4, minmax(25%, 1fr));
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
