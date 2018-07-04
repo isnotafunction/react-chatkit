@@ -1,9 +1,9 @@
 import React from 'react'
 import Chatkit from '@pusher/chatkit'
-import MessageList from './MessageList/MessageList'
-import SendMessage from './SendMessage/SendMessage'
-import Rooms from './Rooms/Rooms'
-import AddRoom from './AddRoom/AddRoom'
+import MessageList from './components/MessageList/MessageList'
+import SendMessage from './components/SendMessage/SendMessage'
+import Rooms from './components/Rooms/Rooms'
+import AddRoom from './components/AddRoom/AddRoom'
 
 import {instanceLocator, tokenUrl} from './config'
 
