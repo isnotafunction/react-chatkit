@@ -11,6 +11,7 @@ export default class App extends React.Component{
   constructor(){
     super()
     this.state = {
+      roomId: null,
       messages: [],
       joinableRooms: [],
       joinedRooms: []
@@ -30,7 +31,6 @@ export default class App extends React.Component{
      .then(currentUser => {
        this.currentUser = currentUser
        this.getRooms()
-       this.subscribeToRoom()
      }).catch(err => console.log('Error on connecting: ', err))
     }
   
@@ -44,29 +44,38 @@ export default class App extends React.Component{
     }).catch(err => console.log('error on joinableRooms: ', err))
   }  
 
-  subscribeToRoom = () => {
+  subscribeToRoom = (roomId) => {
+      this.setState({messages: []})
       this.currentUser.subscribeToRoom({
-        roomId: 10857405,
+        roomId: roomId,
         hooks: {
            onNewMessage: message => {
             this.setState({messages: [...this.state.messages, message]})
            }
         }
+      }).then(room => {
+        this.setState({
+          roomId : room.id
+        })
+        this.getRooms()
       })
+      .catch(err=> console.log('error on subscribing to a room: ', err))
      }  
  
 
   sendMessage = (text) => {
     this.currentUser.sendMessage({
       text: text,
-      roomId: 10857405
+      roomId: this.state.roomId
     })
   }
 
   render(){
     return (
       <React.Fragment>
-        <Rooms rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+        <Rooms
+         subscribeToRoom={this.subscribeToRoom}
+         rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages}/>
         <SendMessage sendMessage={this.sendMessage}/>
       </React.Fragment>

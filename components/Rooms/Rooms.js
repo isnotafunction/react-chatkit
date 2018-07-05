@@ -10,12 +10,19 @@ const StyledLi = styled.li`
 `
 
 
-const Rooms = ({rooms}) => {
+const Rooms = ({rooms, subscribeToRoom}) => {
   return (
    <ul>
      <h4>rooms: </h4>
      {rooms.map((room, i) => {
-      return <StyledLi key={`index${i}`}><StyledLink href="#">#{room.name}</StyledLink></StyledLi>
+      return(
+       <StyledLi key={`index${i}`}>
+         <StyledLink 
+           href="#" 
+           onClick={() => subscribeToRoom(room.id)}>#{room.name}
+         </StyledLink>
+       </StyledLi>
+      ) 
      })}
    </ul>
   )
