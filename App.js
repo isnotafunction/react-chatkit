@@ -70,12 +70,21 @@ export default class App extends React.Component{
     })
   }
 
+  addRoom = (roomName) => {
+    this.currentUser.createRoom({
+      name: roomName
+    }).then(room => this.subscribeToRoom(room.id))
+    .catch(err => console.log('error adding the room', err))
+  }
+
   render(){
     return (
       <React.Fragment>
         <Rooms
+         roomId={this.state.roomId}
          subscribeToRoom={this.subscribeToRoom}
          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+        <AddRoom addRoom={this.addRoom}/>
         <MessageList messages={this.state.messages}/>
         <SendMessage sendMessage={this.sendMessage}/>
       </React.Fragment>
