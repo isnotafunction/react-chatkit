@@ -11,10 +11,11 @@ const StyledLi = styled.li`
 
 
 const Rooms = ({rooms, subscribeToRoom}) => {
+  const orderedRooms = [...rooms].sort((a, b) => a.id - b.id) 
   return (
    <ul>
      <h4>rooms: </h4>
-     {rooms.map((room, i) => {
+     {orderedRooms.map((room, i) => {
       return(
        <StyledLi key={`index${i}`}>
          <StyledLink 
