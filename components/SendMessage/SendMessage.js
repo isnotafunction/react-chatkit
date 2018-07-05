@@ -7,7 +7,12 @@ background-color: #313e54;
 height: 2rem;
 border: none;
 color: #fff;
+text-indent: 10px;
 width: 100%;
+&:focus{
+  outline:none;
+  box-shadow: 0 0 10px #fff;
+}   
 `
 
 const StyledForm = styled.form`

@@ -11,17 +11,18 @@ border: 1px solid #313e54;
 const StyledLink = styled.a`
  color: #fff;
  text-decoration: none;
- opacity: 0.7;
- &:focus{
-   opacity 1;
-  }
+ .active {
+  opacity: 1;
+ }
+ .non-active{
+   opacity:0.6;
+ }
 `
 const StyledLi = styled.li`
  list-style: none;
 `
 
-
-const Rooms = ({rooms, subscribeToRoom}) => {
+const Rooms = ({rooms, subscribeToRoom, roomId}) => {
   const orderedRooms = [...rooms].sort((a, b) => a.id - b.id) 
   return (
    <StyledUl>
@@ -31,7 +32,8 @@ const Rooms = ({rooms, subscribeToRoom}) => {
        <StyledLi key={`index${i}`}>
          <StyledLink 
            href="#" 
-           onClick={() => subscribeToRoom(room.id)}>#{room.name}
+           onClick={() => subscribeToRoom(room.id)}>
+           <span className={room.id === roomId ? 'active' : 'non-active'}>#{room.name}</span>
          </StyledLink>
        </StyledLi>
       ) 
