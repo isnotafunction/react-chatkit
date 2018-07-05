@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const StyledUl = styled.ul`
+grid-column: 1 / 2;
+grid-row: 2 / 4;
+padding:0;
+margin:0;
+border: 1px solid #313e54; 
+`
 const StyledLink = styled.a`
  color: #fff;
  text-decoration: none;
@@ -17,7 +24,7 @@ const StyledLi = styled.li`
 const Rooms = ({rooms, subscribeToRoom}) => {
   const orderedRooms = [...rooms].sort((a, b) => a.id - b.id) 
   return (
-   <ul>
+   <StyledUl>
      <h4>rooms: </h4>
      {orderedRooms.map((room, i) => {
       return(
@@ -29,7 +36,7 @@ const Rooms = ({rooms, subscribeToRoom}) => {
        </StyledLi>
       ) 
      })}
-   </ul>
+   </StyledUl>
   )
 }
 

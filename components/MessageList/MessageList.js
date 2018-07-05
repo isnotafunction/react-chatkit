@@ -6,7 +6,7 @@ import Message from './../Message/Message'
 const StyledMessageList = styled.div`
 border: 1px solid #313e54;
 border-radius: 5px;
-grid-column: 2 / span 2;
+grid-column: 2 / 3;
 grid-row: 2 / 4;
 overflow: scroll;
 max-height: 100%;

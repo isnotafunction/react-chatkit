@@ -9,6 +9,7 @@ margin:5px;
 padding: 5px;
 border-radius: 10px;
 background-color: #5d6b82;
+width: 90%;
 `
 const StyledUsername = styled.div`
 color: #ccf96b;
