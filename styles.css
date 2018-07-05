@@ -3,6 +3,7 @@
   --coral: #f9746b;
   --darkgray: #435066;
   --lime:#ccf96b;
+  --mint: #6bf9d3;
 }
 
 body{
@@ -21,8 +22,9 @@ body{
   height: 100%;
   width:100%;
   display: grid;
-  grid-template-columns: minmax(15%, 20%) minmax(60%, 80%);
+  grid-template-columns: minmax(20%, 25%) minmax(60%, 75%);
   grid-template-rows: repeat(4, minmax(25%, 1fr));
+  grid-column-gap: 10px;
 }
 
 @media only screen and (min-width: 700px){
