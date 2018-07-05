@@ -4,6 +4,10 @@ import styled from 'styled-components'
 const StyledLink = styled.a`
  color: #fff;
  text-decoration: none;
+ opacity: 0.7;
+ &:focus{
+   opacity 1;
+  }
 `
 const StyledLi = styled.li`
  list-style: none;
