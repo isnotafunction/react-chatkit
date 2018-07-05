@@ -29,24 +29,32 @@ export default class App extends React.Component{
      chatManager.connect()
      .then(currentUser => {
        this.currentUser = currentUser
-       this.currentUser.getJoinableRooms()
-       .then(joinableRooms => {
-         this.setState({
-           joinableRooms,
-           joinedRooms: this.currentUser.rooms
-         })
-       }).catch(err => console.log('error on joinableRooms: ', err))
-       
-       this.currentUser.subscribeToRoom({
-         roomId: 10857405,
-         hooks: {
-            onNewMessage: message => {
-             this.setState({messages: [...this.state.messages, message]})
-            }
-         }
-       })
+       this.getRooms()
+       this.subscribeToRoom()
      }).catch(err => console.log('Error on connecting: ', err))
-  }
+    }
+  
+  getRooms = () => {
+    this.currentUser.getJoinableRooms()
+    .then(joinableRooms => {
+      this.setState({
+        joinableRooms,
+        joinedRooms: this.currentUser.rooms
+      })
+    }).catch(err => console.log('error on joinableRooms: ', err))
+  }  
+
+  subscribeToRoom = () => {
+      this.currentUser.subscribeToRoom({
+        roomId: 10857405,
+        hooks: {
+           onNewMessage: message => {
+            this.setState({messages: [...this.state.messages, message]})
+           }
+        }
+      })
+     }  
+ 
 
   sendMessage = (text) => {
     this.currentUser.sendMessage({
