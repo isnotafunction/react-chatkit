@@ -11,7 +11,9 @@ export default class App extends React.Component{
   constructor(){
     super()
     this.state = {
-      messages: []
+      messages: [],
+      joinableRooms: [],
+      joinedRooms: []
      }
   }
   
@@ -27,6 +29,14 @@ export default class App extends React.Component{
      chatManager.connect()
      .then(currentUser => {
        this.currentUser = currentUser
+       this.currentUser.getJoinableRooms()
+       .then(joinableRooms => {
+         this.setState({
+           joinableRooms,
+           joinedRooms: this.currentUser.rooms
+         })
+       }).catch(err => console.log('error on joinableRooms: ', err))
+       
        this.currentUser.subscribeToRoom({
          roomId: 10857405,
          hooks: {
@@ -35,7 +45,7 @@ export default class App extends React.Component{
             }
          }
        })
-     })
+     }).catch(err => console.log('Error on connecting: ', err))
   }
 
   sendMessage = (text) => {
@@ -48,6 +58,7 @@ export default class App extends React.Component{
   render(){
     return (
       <React.Fragment>
+        <Rooms rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages}/>
         <SendMessage sendMessage={this.sendMessage}/>
       </React.Fragment>
